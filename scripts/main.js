@@ -10,17 +10,33 @@ editBtn.addEventListener('click', function(e) {
     editBtn.innerHTML = 'Save Changes';
     editBtn.style.backgroundColor = '#6F9';
   } else {
-    // выключаем режим редактирования
     editables[0].contentEditable = 'false';
     editables[1].contentEditable = 'false';
     editables[2].contentEditable = 'false';
     editables[3].contentEditable = 'false';
-    // изменяем текст и цвет кнопки
     editBtn.innerHTML = 'Enable Editing';
     editBtn.style.backgroundColor = '#F96';
-    // сохраняем данные в localStorage
     for (var i = 0; i < editables.length; i++) {
       localStorage.setItem(editables[i].getAttribute('id'), editables[i].innerHTML);
     }
   }
 });
+
+if (typeof(Storage) !== "undefined") {
+
+  if (localStorage.getItem('title') !== null) {
+    editables[0].innerHTML = localStorage.getItem('title');
+  }
+
+  if (localStorage.getItem('author') !== null) {
+    editables[1].innerHTML = localStorage.getItem('author');
+  }
+
+  if (localStorage.getItem('content') !== null) {
+    editables[2].innerHTML = localStorage.getItem('content');
+  }
+
+  if (localStorage.getItem('content2') !== null) {
+    editables[3].innerHTML = localStorage.getItem('content2');
+  }
+}
